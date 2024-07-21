@@ -1,0 +1,228 @@
+/* Font Faces */
+@font-face {
+    font-family: 'OstrichSans-Bold';
+    src: url('./fonts/OstrichSans-Bold.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'marker';
+    src: url('./fonts/PermanentMarker-Regular.ttf') format('opentype');
+}
+
+/* Base Styles */
+body,
+html {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+.header {
+    text-align: center;
+    font-size: 40px;
+    padding: 20px 0;
+    animation: FadeIn 2s;
+}
+
+h1 {
+    font-family: 'OstrichSans-Bold', sans-serif;
+    font-size: 4rem;
+}
+
+.right-side {
+    display: flex;
+    justify-content: center;
+    /* Center horizontally */
+    align-items: center;
+    /* Center vertically */
+    height: 100%;
+    /* Ensure the right-side div takes up full height */
+    width: 100%;
+    /* Ensure the right-side div takes up full width */
+}
+
+.intro-panel,
+.movie-selected-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 4rem;
+}
+
+.movie-selected-panel {
+    transform: translateY(-300%);
+    opacity: 0%;
+    gap: 2rem;
+}
+
+.functions {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    height: auto;
+    text-align: center;
+}
+
+.disk-container {
+    width: 250px;
+    height: 500px;
+    overflow: hidden;
+    margin-right: 30%;
+    transform: translateX(-100%);
+}
+
+.slide-in {
+    animation: SlideIn 2s;
+    animation-fill-mode: forwards;
+}
+
+.spinner {
+    position: absolute;
+    width: 506px;
+    height: 493px;
+    left: -250px;
+    transform-origin: center;
+}
+
+.disk {
+    width: 100%;
+    transform-origin: center;
+    transform: rotate(90deg);
+}
+
+.disk-text-right,
+.disk-text-left {
+    font-family: "marker";
+    position: absolute;
+    width: 7rem;
+    overflow-wrap: break-word;
+    font-size: 1.3rem;
+}
+
+.disk-text-right {
+    top: 42%;
+    left: 61%;
+}
+
+.disk-text-left {
+    text-align: center;
+    transform: rotate(180deg);
+    top: 46%;
+    left: 11%;
+}
+
+.primary-button {
+    padding: 10px;
+    font-size: 1rem;
+    /* Match base font size */
+    color: black;
+    background-color: #fc0;
+    border: 1px solid #000;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.primary-button:hover {
+    color: #ffcc00;
+    background-color: #3d65ba;
+}
+
+#choose-text {
+    margin-left: 10px;
+    color: #aaa;
+}
+
+.disk-functions {
+    position: relative;
+}
+
+.arrow {
+    position: absolute;
+    top: 250px;
+    right: calc(100vw - 300px);
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    animation: l1 1s linear infinite alternate;
+}
+
+.loader:before {
+    content: "Finding your movie"
+}
+
+@keyframes l1 {
+    to {
+        opacity: 0
+    }
+}
+
+.movie-link a{
+    text-decoration: none;
+  font-size: 26px;
+  color: #000;
+  font-weight: 900;
+  position: relative;
+}
+
+.slide-down-dissapear {
+    animation: SlideDownDissapear 1s;
+    animation-fill-mode: forwards;
+}
+
+.slide-down-appear {
+    animation: SlideDownAppear 1s;
+    animation-fill-mode: forwards;
+}
+
+/* Animations */
+@keyframes SlideIn {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes SlideDownDissapear {
+    from {
+        transform: translateY(0%);
+        opacity: 100%;
+    }
+
+    to {
+        transform: translateY(300%);
+        opacity: 0%;
+    }
+}
+
+@keyframes SlideDownAppear {
+    from {
+        transform: translateY(-300%);
+        opacity: 0%;
+    }
+
+    to {
+        transform: translateY(0%);
+        opacity: 100%;
+    }
+}
+
+@keyframes FadeIn {
+    from {
+        opacity: 0%;
+    }
+
+    to {
+        opacity: 100%;
+    }
+}
