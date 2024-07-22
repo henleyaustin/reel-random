@@ -1,12 +1,12 @@
 /* Font Faces */
 @font-face {
     font-family: 'OstrichSans-Bold';
-    src: url('./fonts/OstrichSans-Bold.otf') format('opentype');
+    src: url('./assets/fonts/OstrichSans-Bold.otf') format('opentype');
 }
 
 @font-face {
     font-family: 'marker';
-    src: url('./fonts/PermanentMarker-Regular.ttf') format('opentype');
+    src: url('./assets/fonts/PermanentMarker-Regular.ttf') format('opentype');
 }
 
 /* Base Styles */
@@ -164,12 +164,12 @@ h1 {
     }
 }
 
-.movie-link a{
+.movie-link a {
     text-decoration: none;
-  font-size: 26px;
-  color: #000;
-  font-weight: 900;
-  position: relative;
+    font-size: 26px;
+    color: #000;
+    font-weight: 900;
+    position: relative;
 }
 
 .slide-down-dissapear {
