@@ -12,7 +12,11 @@
     "license": "ISC",
     "description": "",
     "dependencies": {
-        "express": "^4.19.2"
+        "axios": "^1.7.5",
+        "cheerio": "^1.0.0",
+        "express": "^4.19.2",
+        "imdb-listimporter": "^0.2.7",
+        "imdb-watchlist": "^0.0.1"
     },
     "devDependencies": {
         "nodemon": "^3.1.4"
