@@ -17,18 +17,34 @@
                 <div class="disk-container">
                     <div class="spinner">
                         <img
-                            src="./assets/images/dvdnobg.png"
+                            src="./assets/images/disc.png"
                             alt="Rotating Disk"
                             class="disk"
                         />
                         <span class="disk-text-right"></span>
                         <span class="disk-text-left"></span>
                     </div>
+                    <!-- <img
+                        src="./assets/images/disc-drive.png"
+                        alt="Disk Drive"
+                        class="disk-drive"
+                    /> -->
                 </div>
             </div>
 
-            <div class="right-side" id="right-side">
+            <div class="middle-panel" id="middle-panel">
                 <!-- Dynamic content will be inserted here -->
+            </div>
+
+            <div class="right-panel" id="right-panel">
+                <div
+                    id="movie-list-container"
+                    class="movie-list-container"
+                    hidden
+                >
+                    <h3>Movies Loaded:</h3>
+                    <ul id="movie-list"></ul>
+                </div>
             </div>
         </div>
 

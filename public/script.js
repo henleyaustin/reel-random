@@ -1,4 +1,4 @@
-const defaultSpeed = 2;
+const defaultSpeed = 1;
 
 var currentMovieIndex = 0;
 var movies = [];
@@ -12,7 +12,7 @@ var currentlySpinning = false;
 const $spinnerElement = $('.spinner');
 const $diskTextRight = $('.disk-text-right');
 const $diskTextLeft = $('.disk-text-left');
-const $rightSide = $('#right-side');
+const $middlePanel = $('#middle-panel');
 const $introTemplate = $('#intro-panel').prop('content');
 const $movieSelectedTemplate = $('#movie-selected-panel').prop('content');
 const $loadingTemplate = $('#loader').prop('content');
@@ -70,6 +70,7 @@ function setupInputValidation () {
                 $('#url').prop('disabled', true);
                 $('#import-button').text('Imported').addClass('imported');
                 movies = fetchedMovies;
+                populateList();
                 startDiscAnimation();
             }
         } else {
@@ -91,9 +92,30 @@ function importMoviesFromWatchlist (url) {
         });
 }
 
+function populateList () {
+    $('#movie-list-container').show();
+    // Loop through each item in the array
+    $.each(movies, function (index, movie) {
+        // Create a new <li> element with a link
+        const listItem = $('<li>');
+
+        // Create the <a> element with the movie title and URL
+        const link = $('<a>')
+            .attr('href', movie.url) // Set the href attribute to the movie URL
+            .attr('target', '_blank') // Open link in a new tab
+            .text(movie.title); // Set the text of the link to the movie title
+
+        // Append the link to the <li> element
+        listItem.append(link);
+
+        // Append the <li> to the <ul> with id "movie-list"
+        $('#movie-list').append(listItem);
+    });
+}
+
 // Function to load intro panel
 function loadIntroPanel () {
-    $rightSide.empty().append($introTemplate.cloneNode(true));
+    $middlePanel.empty().append($introTemplate.cloneNode(true));
     addIntroPanelListeners();
 }
 
@@ -103,7 +125,7 @@ const loadMovieSelectedPanel = () => {
     if ($introPanel.length) {
         $introPanel.addClass('slide-down-dissapear'); // Remove the intro buttons
     }
-    $rightSide.empty().append($movieSelectedTemplate.cloneNode(true));
+    $middlePanel.empty().append($movieSelectedTemplate.cloneNode(true));
     const $movieSelectedPanel = $('.movie-selected-panel');
     $movieSelectedPanel.addClass('slide-down-appear'); // Add the "movie selected" items
     addMovieSelectedPanelListeners();
@@ -111,7 +133,7 @@ const loadMovieSelectedPanel = () => {
 
 // Adds loading template to the right side of the screen
 const loading = () => {
-    $rightSide.empty().append($loadingTemplate.cloneNode(true));
+    $middlePanel.empty().append($loadingTemplate.cloneNode(true));
 };
 
 const addIntroPanelListeners = () => {
@@ -136,15 +158,25 @@ const addIntroPanelListeners = () => {
                     $('#choose-text').text(
                         input.files[0].name || 'No file chosen, yet.'
                     );
+
+                    populateList(movies);
                     startDiscAnimation();
                 })
                 .catch(error => console.log(error));
         }
     });
 
-    $('#pick-button').on('click', function () {
+    // Event delegation to handle clicks on dynamically loaded pick buttons
+    $(document).on('click', '#pick-button', function () {
+        console.log(
+            'Pick button clicked. Currently spinning:',
+            currentlySpinning
+        );
+
         clearInterval(interval); // Clear any existing interval to avoid multiple intervals running simultaneously
+
         if (currentlySpinning) {
+            console.log('Speeding up rotation');
             speedUpRotation();
             loading();
         } else {
